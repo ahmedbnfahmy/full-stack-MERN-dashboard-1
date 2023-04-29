@@ -1,0 +1,27 @@
+const mongoose = require('mongoose');
+
+const productSchema = new mongoose.Schema(
+    {
+        
+        name: { type: String, required: true, unique: true },
+        arname: { type: String, default: "" },/////
+        imagePath: { type: [String], required: true },
+        category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+        arcategory: { type: String, default: "" },////
+        subcategory: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+        arsubcategory: {type: String,default: ""},
+        ratings: { type: Number, default: 1 },
+        description: { type: String , default: "Order From Jumia express items and get free shipping."},
+        ardescription: { type: String,default: "" },//////
+        price: { type: Number },
+        countInStock: { type: Number, default: 10 },
+        sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        isDeleted:{type: Boolean, default: false},
+    },
+    {
+        timestamps: true,
+    }
+);
+
+
+module.exports = mongoose.model('Product', productSchema);
